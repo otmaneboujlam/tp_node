@@ -6,6 +6,7 @@ const biereCommandeRouter = require('./router/biere_commandeRouter');
 const biereRouter = require('./router/biere');
 const barsRouter = require('./router/barsRouter');
 const authRouter = require('./router/authRouter');
+const commandeRouter = require("./router/orderRouter");
 
 const app = express();
 
@@ -21,6 +22,7 @@ app.use("/auth", authRouter);
 
 app.use('/biere', biereRouter);
 app.use("/biere_commande", biereCommandeRouter);
+app.use("/commande", commandeRouter);
 app.use("/bars", barsRouter);
 
 const PORT = process.env.PORT || 3000;
