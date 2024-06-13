@@ -69,7 +69,7 @@ exports.getBieresByBar = async (req, res) => {
         const { sort = 'asc', limit = 10, offset = 0, degree_min, degree_max } = req.query;
 
         const whereClause = { bars_id: id_bar };
-        console.log(degree_max);
+
         if (degree_min || degree_max) {
             whereClause.degree = {};
             if (degree_min) whereClause.degree[Op.gte] = degree_min;
