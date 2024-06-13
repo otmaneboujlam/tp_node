@@ -4,6 +4,8 @@ const bodyParser = require('body-parser');
 const { initializeDatabase } = require('./models/models');
 const biereCommandeRouter = require('./router/biere_commandeRouter');
 const biereRouter = require('./router/biere');
+const barsRouter = require('./router/barsRouter');
+const authRouter = require('./router/authRouter');
 
 const app = express();
 
@@ -15,6 +17,8 @@ dotenv.config();
 initializeDatabase();
 
 //Routes
+app.use("/auth", authRouter);
+
 app.use('/biere_commande', biereCommandeRouter);
 app.use('/biere', biereRouter);
 app.use("/bars", barsRouter);

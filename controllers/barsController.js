@@ -1,6 +1,5 @@
-const express = require("express");
-const router = express.Router();
 const Bar = require("../models/bars");
+const bcrypt = require('bcrypt');
 
 exports.getAllBars = (req, res) => {
   Bar.findAll()
@@ -44,15 +43,18 @@ exports.createBar = (req, res) => {
     });
 };
 
-exports.updateBar = (req, res) => {
+exports.updateBar = async (req, res) => {
   const id = req.params.id;
   const { name, address, tel, email, description } = req.body;
+  const hashedPassword = await bcrypt.hash(password, 10);
+
   Bar.update(
     {
       name: name,
       address: address,
       tel: tel,
       email: email,
+      password: hashedPassword,
       description: description,
     },
     {
@@ -83,5 +85,3 @@ exports.deleteBar = (req, res) => {
       res.status(400).json({ error: error.message });
     });
 };
-
-module.exports = router;

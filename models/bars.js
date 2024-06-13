@@ -23,9 +23,18 @@ const Bar = sequelize.define("Bar", {
   email: {
     type: DataTypes.STRING,
     allowNull: false,
+    unique: true,
     validate: {
       isEmail: true,
     },
+  },
+  password: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  token: {
+    type: DataTypes.STRING,
+    allowNull: true,
   },
   description: {
     type: DataTypes.STRING,
