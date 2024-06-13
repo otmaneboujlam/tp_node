@@ -3,10 +3,12 @@ const dotenv = require('dotenv');
 const bodyParser = require('body-parser');
 const { initializeDatabase } = require('./models/models');
 
-dotenv.config();
-
 const app = express();
+
+app.use("/bars", barsRouter);
 app.use(bodyParser.json());
+
+dotenv.config();
 
 //Initialise la base de donnée avec relations
 initializeDatabase();
