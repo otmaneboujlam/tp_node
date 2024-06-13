@@ -1,5 +1,3 @@
-const express = require("express");
-const router = express.Router();
 const Bar = require("../models/bars");
 
 exports.getAllBars = (req, res) => {
@@ -83,5 +81,3 @@ exports.deleteBar = (req, res) => {
       res.status(400).json({ error: error.message });
     });
 };
-
-module.exports = router;
