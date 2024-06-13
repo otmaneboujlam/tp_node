@@ -12,7 +12,7 @@ app.use(bodyParser.json());
 //Initialise la base de donnée avec relations
 initializeDatabase();
 
-app.use('/', biereRouter);
+app.use('/biere', biereRouter);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
