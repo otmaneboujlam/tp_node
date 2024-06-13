@@ -19,8 +19,8 @@ initializeDatabase();
 //Routes
 app.use("/auth", authRouter);
 
-app.use('/biere_commande', biereCommandeRouter);
 app.use('/biere', biereRouter);
+app.use("/biere_commande", biereCommandeRouter);
 app.use("/bars", barsRouter);
 
 const PORT = process.env.PORT || 3000;
