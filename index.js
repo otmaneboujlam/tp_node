@@ -2,6 +2,7 @@ const express = require('express');
 const dotenv = require('dotenv');
 const bodyParser = require('body-parser');
 const { initializeDatabase } = require('./models/models');
+const biereRouter = require('./router/biere');
 
 dotenv.config();
 
@@ -10,6 +11,8 @@ app.use(bodyParser.json());
 
 //Initialise la base de donnée avec relations
 initializeDatabase();
+
+app.use('/', biereRouter);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
