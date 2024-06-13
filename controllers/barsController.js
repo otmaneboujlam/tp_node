@@ -26,10 +26,10 @@ exports.getBarById = (req, res) => {
 };
 
 exports.createBar = (req, res) => {
-  const { name, address, tel, email, description } = req.body;
+  const { name, adresse, tel, email, description } = req.body;
   Bar.create({
     name: name,
-    address: address,
+    adresse: adresse,
     tel: tel,
     email: email,
     description: description,
@@ -44,11 +44,11 @@ exports.createBar = (req, res) => {
 
 exports.updateBar = (req, res) => {
   const id = req.params.id;
-  const { name, address, tel, email, description } = req.body;
+  const { name, adresse, tel, email, description } = req.body;
   Bar.update(
     {
       name: name,
-      address: address,
+      adresse: adresse,
       tel: tel,
       email: email,
       description: description,
