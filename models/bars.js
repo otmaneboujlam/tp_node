@@ -14,17 +14,22 @@ const Bar = sequelize.define("Bar", {
   },
   adresse: {
     type: DataTypes.STRING,
+    allowNull: false,
   },
   tel: {
     type: DataTypes.STRING,
-    allowNull: false,
+    allowNull: true,
   },
   email: {
     type: DataTypes.STRING,
+    allowNull: false,
+    validate: {
+      isEmail: true,
+    },
   },
   description: {
     type: DataTypes.STRING,
-    allowNull: false,
+    allowNull: true,
   },
 });
 
