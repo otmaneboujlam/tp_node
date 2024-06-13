@@ -1,4 +1,5 @@
 const Bar = require("../models/bars");
+const bcrypt = require('bcrypt');
 
 exports.getAllBars = (req, res) => {
   Bar.findAll()
@@ -42,7 +43,7 @@ exports.createBar = (req, res) => {
     });
 };
 
-exports.updateBar = (req, res) => {
+exports.updateBar = async (req, res) => {
   const id = req.params.id;
   const { name, adresse, tel, email, description } = req.body;
   Bar.update(

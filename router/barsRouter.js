@@ -1,15 +1,16 @@
 const express = require("express");
 const barsController = require("../controllers/barsController");
+const authenticate = require('../middleware/form');
 const router = express.Router();
 
 router.get("/", barsController.getAllBars);
 
 router.get("/:id", barsController.getBarById);
 
-router.post("/", barsController.createBar);
+router.post("/", authenticate, barsController.createBar);
 
-router.put("/:id", barsController.updateBar);
+router.put("/:id", authenticate, barsController.updateBar);
 
-router.delete("/:id", barsController.deleteBar);
+router.delete("/:id", authenticate, barsController.deleteBar);
 
 module.exports = router;
