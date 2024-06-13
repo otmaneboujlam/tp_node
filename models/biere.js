@@ -30,7 +30,6 @@ const Biere = sequelize.define('Biere', {
         },
     },
 }, {
-    tableName: 'bieres',
     timestamps: false,
 });
 
