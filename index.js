@@ -1,11 +1,13 @@
-const express = require('express');
-const dotenv = require('dotenv');
-const bodyParser = require('body-parser');
+const express = require("express");
+const dotenv = require("dotenv");
+const bodyParser = require("body-parser");
+const barsRouter = require("./router/barsRouter");
+const app = express();
+
+app.use("/bars", barsRouter);
+app.use(bodyParser.json());
 
 dotenv.config();
-
-const app = express();
-app.use(bodyParser.json());
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
