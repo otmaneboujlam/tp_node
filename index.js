@@ -5,6 +5,7 @@ const { initializeDatabase } = require("./models/models");
 const biereCommandeRouter = require("./router/biere_commandeRouter");
 const biereRouter = require("./router/biere");
 const barsRouter = require("./router/barsRouter");
+const commandeRouter = require("./router/orderRouter");
 
 const app = express();
 
@@ -17,6 +18,7 @@ initializeDatabase();
 
 //Routes
 app.use("/biere_commande", biereCommandeRouter);
+app.use("/commande", commandeRouter);
 app.use("/biere", biereRouter);
 app.use("/bars", barsRouter);
 
