@@ -1,9 +1,9 @@
-const { Model, DataTypes } = require('sequelize');
+const { DataTypes } = require('sequelize');
 const { sequelize } = require('../config/database');
+const { Bar } = require('./Bar');
 
-class Biere extends Model { }
 
-Biere.init({
+const Biere = sequelize.define('Biere', {
     name: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -25,12 +25,13 @@ Biere.init({
     },
     bars_id: {
         type: DataTypes.INTEGER,
-        allowNull: false,
+        references: {
+            model: Bar,
+            key: 'id',
+        },
     },
 }, {
-    sequelize,
-    modelName: 'Biere',
-    tableName: 'biere',
+    tableName: 'bieres',
     timestamps: false,
 });
 
