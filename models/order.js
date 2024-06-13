@@ -6,7 +6,8 @@ const Order = db.define('Order', {
     name : { type : sequelize.STRING },
     price : { type : sequelize.FLOAT, validate : { min : 0 } },
     date : { type : sequelize.DATE },
-    statut : { type : sequelize.ENUM('en cours', 'terminée') }
+    statut : { type : sequelize.ENUM('en cours', 'terminée') },
+    bars_id : { type : sequelize.INTEGER, allowNull : false},
 })
 
 module.exports = Order
