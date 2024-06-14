@@ -1,5 +1,7 @@
 const Bar = require("../models/bars");
 const bcrypt = require('bcrypt');
+const Commande = require("../models/order");
+const Biere = require("../models/biere");
 
 exports.getAllBars = (req, res) => {
   Bar.findAll()
@@ -77,6 +79,58 @@ exports.deleteBar = (req, res) => {
   })
     .then(() => {
       res.status(200).send();
+    })
+    .catch((error) => {
+      res.status(400).json({ error: error.message });
+    });
+};
+
+exports.getCommandes = (req, res) => {
+  const { id } = req.params;
+  const { date, prix_min, prix_max } = req.query;
+
+  Commande.findAll({
+    where: {
+      barId: id,
+      ...(date && { date }),
+      ...(prix_min && { prix: { [Op.gte]: parseFloat(prix_min) } }),
+      ...(prix_max && { prix: { [Op.lte]: parseFloat(prix_max) } }),
+    },
+  })
+    .then((commandes) => {
+      res.json(commandes);
+    })
+    .catch((error) => {
+      res.status(400).json({ error: error.message });
+    });
+};
+
+exports.getDegree = (req, res) => {
+  const { id } = req.params;
+
+  Biere.findAll({
+    where: { barId: id },
+    attributes: [[sequelize.fn("AVG", sequelize.col("degree")), "avgDegree"]],
+  })
+    .then((result) => {
+      res.json(result);
+    })
+    .catch((error) => {
+      res.status(400).json({ error: error.message });
+    });
+};
+
+exports.searchBars = (req, res) => {
+  const { ville, name } = req.query;
+
+  Bar.findAll({
+    where: {
+      ...(ville && { ville: { [Op.like]: `%${ville}%` } }),
+      ...(name && { name: { [Op.like]: `%${name}%` } }),
+    },
+  })
+    .then((bars) => {
+      res.json(bars);
     })
     .catch((error) => {
       res.status(400).json({ error: error.message });
