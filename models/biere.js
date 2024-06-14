@@ -1,36 +1,40 @@
-const { DataTypes } = require('sequelize');
-const sequelize = require('../config/database');
-const { Bar } = require('./bars');
+const { DataTypes } = require("sequelize");
+const sequelize = require("../config/database");
+const { Bar } = require("./bars");
 
-const Biere = sequelize.define('Biere', {
+const Biere = sequelize.define(
+  "Biere",
+  {
     name: {
-        type: DataTypes.STRING,
-        allowNull: false,
+      type: DataTypes.STRING,
+      allowNull: false,
     },
     description: {
-        type: DataTypes.TEXT,
-        allowNull: true,
+      type: DataTypes.TEXT,
+      allowNull: true,
     },
     degree: {
-        type: DataTypes.FLOAT,
-        allowNull: false,
+      type: DataTypes.FLOAT,
+      allowNull: false,
     },
     prix: {
-        type: DataTypes.FLOAT,
-        allowNull: false,
-        validate: {
-            min: 0,
-        },
+      type: DataTypes.FLOAT,
+      allowNull: false,
+      validate: {
+        min: 0,
+      },
     },
     bars_id: {
-        type: DataTypes.INTEGER,
-        references: {
-            model: Bar,
-            key: 'id',
-        },
+      type: DataTypes.INTEGER,
+      references: {
+        model: Bar,
+        key: "id",
+      },
     },
-}, {
+  },
+  {
     timestamps: false,
-});
+  }
+);
 
 module.exports = Biere;

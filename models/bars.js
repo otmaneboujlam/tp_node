@@ -30,7 +30,7 @@ const Bar = sequelize.define("Bar", {
   },
   password: {
     type: DataTypes.STRING,
-    allowNull: false,
+    allowNull: true,
   },
   token: {
     type: DataTypes.STRING,

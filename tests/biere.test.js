@@ -1,11 +1,10 @@
 const request = require('supertest');
 const express = require('express');
 const bodyParser = require('body-parser');
-const { Sequelize, DataTypes, Model, Op } = require('sequelize');
 const Biere = require('../models/biere');
 const biereController = require('../controllers/biereController');
 
-jest.mock('../models/biere'); // Mock the Biere model
+jest.mock('../models/biere');
 
 const app = express();
 app.use(bodyParser.json());

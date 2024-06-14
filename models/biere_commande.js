@@ -1,15 +1,15 @@
-const { DataTypes } = require('sequelize');
-const sequelize = require('../config/database');
-const Biere = require('./biere');
-const Commande = require('./order');
+const { DataTypes } = require("sequelize");
+const sequelize = require("../config/database");
+const Biere = require("./biere");
+const Commande = require("./commande");
 
-const BiereCommande = sequelize.define('BiereCommande', {
+const BiereCommande = sequelize.define("BiereCommande", {
   biere_id: {
     type: DataTypes.INTEGER,
     allowNull: false,
     references: {
       model: Biere,
-      key: 'id',
+      key: "id",
     },
   },
   commande_id: {
@@ -17,7 +17,7 @@ const BiereCommande = sequelize.define('BiereCommande', {
     allowNull: false,
     references: {
       model: Commande,
-      key: 'id',
+      key: "id",
     },
   },
 });

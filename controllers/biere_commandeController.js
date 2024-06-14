@@ -38,7 +38,7 @@ const removeBiereFromCommande = async (req, res) => {
         commande_id: idCommande,
       },
     });
-    res.status(200).send();
+    res.status(200).send({ message: "Suppression effectuée !" });
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
@@ -46,5 +46,5 @@ const removeBiereFromCommande = async (req, res) => {
 
 module.exports = {
   addBiereToCommande,
-  removeBiereFromCommande
+  removeBiereFromCommande,
 };

@@ -1,7 +1,7 @@
 const Bar = require("../models/bars");
-const bcrypt = require('bcrypt');
+const bcrypt = require("bcrypt");
 
-exports.getAllBars = (req, res) => {
+const getAllBars = (req, res) => {
   Bar.findAll()
     .then((bars) => {
       res.json(bars);
@@ -11,8 +11,8 @@ exports.getAllBars = (req, res) => {
     });
 };
 
-exports.getBarById = (req, res) => {
-  const id = req.params.id;
+const getBarById = (req, res) => {
+  const id = req.params.id_bar;
   Bar.findByPk(id)
     .then((bar) => {
       if (bar === null) {
@@ -26,7 +26,7 @@ exports.getBarById = (req, res) => {
     });
 };
 
-exports.createBar = (req, res) => {
+const createBar = (req, res) => {
   const { name, adresse, tel, email, description } = req.body;
   Bar.create({
     name: name,
@@ -43,8 +43,8 @@ exports.createBar = (req, res) => {
     });
 };
 
-exports.updateBar = async (req, res) => {
-  const id = req.params.id;
+const updateBar = async (req, res) => {
+  const id = req.params.id_bar;
   const { name, adresse, tel, email, description } = req.body;
   Bar.update(
     {
@@ -61,24 +61,32 @@ exports.updateBar = async (req, res) => {
     }
   )
     .then(() => {
-      res.status(204).send();
+      res.status(200).send({ message: "le bar à été modifié" });
     })
     .catch((error) => {
       res.status(400).json({ error: error.message });
     });
 };
 
-exports.deleteBar = (req, res) => {
-  const id = req.params.id;
+const deleteBar = (req, res) => {
+  const id = req.params.id_bar;
   Bar.destroy({
     where: {
       id: id,
     },
   })
     .then(() => {
-      res.status(200).send();
+      res.status(200).send({ message: "le bar à été supprimé" });
     })
     .catch((error) => {
       res.status(400).json({ error: error.message });
     });
+};
+
+module.exports = {
+  deleteBar,
+  updateBar,
+  createBar,
+  getBarById,
+  getAllBars,
 };

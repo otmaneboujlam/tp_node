@@ -6,7 +6,7 @@ const biereCommandeRouter = require('./router/biere_commandeRouter');
 const biereRouter = require('./router/biere');
 const barsRouter = require('./router/barsRouter');
 const authRouter = require('./router/authRouter');
-const commandeRouter = require("./router/orderRouter");
+const commandeRouter = require("./router/commandeRouter");
 
 const app = express();
 
